@@ -32,7 +32,7 @@ export default class SortableList extends Component {
     manuallyActivateRows: PropTypes.bool,
     keyboardShouldPersistTaps: PropTypes.oneOf(['never', 'always', 'handled']),
     scrollEventThrottle: PropTypes.number,
-    decelerationRate: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+    decelerationRate: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     pagingEnabled: PropTypes.bool,
     nestedScrollEnabled: PropTypes.bool,
     disableIntervalMomentum: PropTypes.bool,
@@ -595,7 +595,7 @@ export default class SortableList extends Component {
   }
 
   _onLayoutRow(rowKey, {nativeEvent: {layout}}) {
-    this._resolveRowLayout[rowKey]({rowKey, layout});
+    this._resolveRowLayout[rowKey] && this._resolveRowLayout[rowKey]({rowKey, layout});
   }
 
   _onLayoutHeader = ({nativeEvent: {layout}}) => {
